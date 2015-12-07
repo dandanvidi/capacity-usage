@@ -1,0 +1,41 @@
+import pandas as pd
+
+class DATA(object):
+
+    def __init__(self):
+
+        proteins_info = pd.read_csv('../data/protein_abundance_info.csv', sep='\t')
+        gc = pd.DataFrame.from_csv("../data/growth_conditions.csv")
+        gc = gc[gc.reference=='Schmidt et al. 2015']
+        gr = gc['growth rate [h-1]'][gc.index]
+        fL_cell = gc['single cell volume [fL]']/2 # fL (cell volumes are overestimated by a factor of 1.7)
+        fg_cell = pd.read_csv('../data/protein_abundance_[fg_cell].csv')
+
+        conditions = fL_cell.index & fg_cell.columns
+        fg_fL = fg_cell[conditions].div(fL_cell)
+        mg_gCDW = fg_fL/(1100/3)*1000 # cell density is 1100 g/L; DW fraction is 1/3    
+
+    def map_proteomics(df):
+        uni_to_b = {row[48:54]:row[0:5].split(';')[0].strip()
+                    for row in open("../data/all_ecoli_genes.txt", 'r')}
+        
+        df.replace(to_replace={'upid':uni_to_b}, inplace=True)
+        manual_replacememnts = {
+        'D0EX67':'b1107',
+        'D4HZR9':'b2755',
+        'P00452-2':'b2234',
+        'P02919-2':'b0149',
+        'Q2A0K9':'b2011',
+        'Q5H772':'b1302',
+        'Q5H776':'b1298',
+        'Q5H777':'b1297',
+        'Q6E0U3':'b3183'}
+        df.replace(to_replace={'upid':manual_replacememnts}, inplace=True)
+        df.set_index('upid', inplace=True)                                
+        df.index.name = 'bnumber'
+        not_identified = ['B8LFD5','D8FH86','D9IX93','E1MTY0','P0CE60','P23477']
+        df.drop(not_identified, axis=0, inplace=True)
+        df.sort_index(inplace=True)    
+
+
+

@@ -1,0 +1,158 @@
+bnumber,Description,Gene,Peptides.used.for.quantitation,Confidence.score,MW[Da],Bnumber,Annotated functional COG groups (letter),Annotated functional COG group (description),Annotated functional COG class
+b0073,3-isopropylmalate dehydrogenase OS=Escherichia coli (strain K12) GN=leuB PE=1 SV=3,leuB,13,919.93,39474.00703,b0073,CE,Energy production and conversion,METABOLISM
+b0114,Pyruvate dehydrogenase E1 component OS=Escherichia coli (strain K12) GN=aceE PE=1 SV=2,aceE,59,3547.25,99587.94042,b0114,C,Energy production and conversion,METABOLISM
+b0115,Dihydrolipoyllysine-residue acetyltransferase component of pyruvate dehydrogenase complex OS=Escherichia coli (strain K12) GN=aceF PE=1 SV=3,aceF,40,2531.68,66036.77653999999,b0115,C,Energy production and conversion,METABOLISM
+b0118,Aconitate hydratase 2 OS=Escherichia coli (strain K12) GN=acnB PE=1 SV=3,acnB,67,4505.67,93420.9457,b0118,C,Energy production and conversion,METABOLISM
+b0304,Probable pyridine nucleotide-disulfide oxidoreductase ykgC OS=Escherichia coli (strain K12) GN=ykgC PE=3 SV=2,rclA,7,365.65,48195.911889999996,b0304,C,Energy production and conversion,METABOLISM
+b0306,Uncharacterized protein ykgE OS=Escherichia coli (strain K12) GN=ykgE PE=3 SV=1,ykgE,1,37.56,25969.26141,b0306,C,Energy production and conversion,METABOLISM
+b0312,Betaine aldehyde dehydrogenase OS=Escherichia coli (strain K12) GN=betB PE=1 SV=3,betB,2,149.56,52859.73742,b0312,C,Energy production and conversion,METABOLISM
+b0333,2-methylcitrate synthase OS=Escherichia coli (strain K12) GN=prpC PE=1 SV=2,prpC,20,1179.96,43057.02009,b0333,C,Energy production and conversion,METABOLISM
+b0356,S-(hydroxymethyl)glutathione dehydrogenase OS=Escherichia coli (strain K12) GN=frmA PE=1 SV=3,frmA,12,609.35,39315.85811,b0356,C,Energy production and conversion,METABOLISM
+b0419,Uncharacterized oxidoreductase YajO OS=Escherichia coli (strain K12) GN=yajO PE=3 SV=2,yajO,17,981.38,36379.517510000005,b0419,C,Energy production and conversion,METABOLISM
+b0429,Cytochrome o ubiquinol oxidase protein CyoD OS=Escherichia coli (strain K12) GN=cyoD PE=1 SV=1,cyoD,1,88.31,12003.07821,b0429,C,Energy production and conversion,METABOLISM
+b0430,Cytochrome o ubiquinol oxidase subunit 3 OS=Escherichia coli (strain K12) GN=cyoC PE=1 SV=1,cyoC,2,171.45,22589.45441,b0430,C,Energy production and conversion,METABOLISM
+b0431,Ubiquinol oxidase subunit 1 OS=Escherichia coli (strain K12) GN=cyoB PE=1 SV=1,cyoB,10,534.62,74300.34181,b0431,C,Energy production and conversion,METABOLISM
+b0432,Ubiquinol oxidase subunit 2 OS=Escherichia coli (strain K12) GN=cyoA PE=1 SV=1,cyoA,17,820.49,34870.5555,b0432,C,Energy production and conversion,METABOLISM
+b0599,Uncharacterized oxidoreductase YbdH OS=Escherichia coli (strain K12) GN=ybdH PE=3 SV=2,ybdH,8,488.88,39049.326030000004,b0599,C,Energy production and conversion,METABOLISM
+b0684,Flavodoxin-1 OS=Escherichia coli (strain K12) GN=fldA PE=1 SV=2,fldA,7,563.06,19706.53052,b0684,C,Energy production and conversion,METABOLISM
+b0720,Citrate synthase OS=Escherichia coli (strain K12) GN=gltA PE=1 SV=1,gltA,30,2043.46,47965.89357,b0720,C,Energy production and conversion,METABOLISM
+b0721,Succinate dehydrogenase cytochrome b556 subunit OS=Escherichia coli (strain K12) GN=sdhC PE=1 SV=1,sdhC,2,264.71,14271.787709999999,b0721,C,Energy production and conversion,METABOLISM
+b0722,Succinate dehydrogenase hydrophobic membrane anchor subunit OS=Escherichia coli (strain K12) GN=sdhD PE=1 SV=1,sdhD,2,193.02,12841.039929999999,b0722,C,Energy production and conversion,METABOLISM
+b0723,Succinate dehydrogenase flavoprotein subunit OS=Escherichia coli (strain K12) GN=sdhA PE=1 SV=1,sdhA,34,2804.82,64363.086910000005,b0723,C,Energy production and conversion,METABOLISM
+b0724,Succinate dehydrogenase iron-sulfur subunit OS=Escherichia coli (strain K12) GN=sdhB PE=1 SV=1,sdhB,22,1206.05,26734.234519999998,b0724,C,Energy production and conversion,METABOLISM
+b0726,2-oxoglutarate dehydrogenase E1 component OS=Escherichia coli (strain K12) GN=sucA PE=1 SV=1,sucA,42,2817.04,104977.5259,b0726,C,Energy production and conversion,METABOLISM
+b0727,Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex OS=Escherichia coli (strain K12) GN=sucB PE=1 SV=2,sucB,21,1441.27,43965.9951,b0727,C,Energy production and conversion,METABOLISM
+b0728,Succinyl-CoA ligase [ADP-forming] subunit beta OS=Escherichia coli (strain K12) GN=sucC PE=1 SV=1,sucC,23,1617.83,41348.64135,b0728,C,Energy production and conversion,METABOLISM
+b0729,Succinyl-CoA ligase [ADP-forming] subunit alpha OS=Escherichia coli (strain K12) GN=sucD PE=1 SV=2,sucD,23,1502.7,29740.52945,b0729,C,Energy production and conversion,METABOLISM
+b0733,Cytochrome d ubiquinol oxidase subunit 1 OS=Escherichia coli (strain K12) GN=cydA PE=1 SV=1,cydA,10,647.64,58149.048429999995,b0733,C,Energy production and conversion,METABOLISM
+b0734,Cytochrome d ubiquinol oxidase subunit 2 OS=Escherichia coli (strain K12) GN=cydB PE=1 SV=1,cydB,3,96.92,42406.96162,b0734,C,Energy production and conversion,METABOLISM
+b0758,Galactose-1-phosphate uridylyltransferase OS=Escherichia coli (strain K12) GN=galT PE=1 SV=2,galT,7,318.35,39602.516189999995,b0758,C,Energy production and conversion,METABOLISM
+b0801,Uncharacterized oxidoreductase ybiC OS=Escherichia coli (strain K12) GN=ybiC PE=1 SV=2,ybiC,11,1210.26,38854.31329,b0801,C,Energy production and conversion,METABOLISM
+b0851,Oxygen-insensitive NADPH nitroreductase OS=Escherichia coli (strain K12) GN=nfsA PE=1 SV=2,nfsA,4,288.74,26765.85039,b0851,C,Energy production and conversion,METABOLISM
+b0886,ATP-binding/permease protein CydC OS=Escherichia coli (strain K12) GN=cydC PE=3 SV=2,cydC,6,350.4,62862.68065,b0886,CO,Energy production and conversion,METABOLISM
+b0887,ATP-binding/permease protein CydD OS=Escherichia coli (strain K12) GN=cydD PE=1 SV=3,cydD,6,359.35,64997.28515,b0887,CO,Energy production and conversion,METABOLISM
+b0894,Anaerobic dimethyl sulfoxide reductase chain A OS=Escherichia coli (strain K12) GN=dmsA PE=1 SV=2,dmsA,5,293.36,90323.09785,b0894,C,Energy production and conversion,METABOLISM
+b0903,Formate acetyltransferase 1 OS=Escherichia coli (strain K12) GN=pflB PE=1 SV=2,pflB,54,3972.86,85284.7241,b0903,C,Energy production and conversion,METABOLISM
+b0968,Acylphosphatase OS=Escherichia coli (strain K12) GN=yccX PE=1 SV=1,yccX,4,222.45,10275.2359,b0968,C,Energy production and conversion,METABOLISM
+b0972,Hydrogenase-1 small chain OS=Escherichia coli (strain K12) GN=hyaA PE=1 SV=1,hyaA,2,162.7,40636.93027,b0972,C,Energy production and conversion,METABOLISM
+b0973,Hydrogenase-1 large chain OS=Escherichia coli (strain K12) GN=hyaB PE=1 SV=1,hyaB,7,322.87,66193.03,b0973,C,Energy production and conversion,METABOLISM
+b0978,Cytochrome bd-II oxidase subunit 1 OS=Escherichia coli (strain K12) GN=appC PE=1 SV=1,appC,2,141.52,57863.80187,b0978,C,Energy production and conversion,METABOLISM
+b1014,Bifunctional protein putA OS=Escherichia coli (strain K12) GN=putA PE=1 SV=3,putA,36,2535.67,143707.3978,b1014,C,Energy production and conversion,METABOLISM
+b1109,NADH dehydrogenase OS=Escherichia coli (strain K12) GN=ndh PE=1 SV=2,ndh,18,1368.88,47310.63259,b1109,C,Energy production and conversion,METABOLISM
+b1136,Isocitrate dehydrogenase [NADP] OS=Escherichia coli (strain K12) GN=icd PE=1 SV=1,icd,38,2595.05,45709.46787,b1136,C,Energy production and conversion,METABOLISM
+b1224,Respiratory nitrate reductase 1 alpha chain OS=Escherichia coli (strain K12) GN=narG PE=1 SV=4,narG,4,136.9,140382.5073,b1224,C,Energy production and conversion,METABOLISM
+b1225,Respiratory nitrate reductase 1 beta chain OS=Escherichia coli (strain K12) GN=narH PE=1 SV=3,narH,1,106.1,58010.799320000006,b1225,C,Energy production and conversion,METABOLISM
+b1226,Nitrate reductase molybdenum cofactor assembly chaperone NarJ OS=Escherichia coli (strain K12) GN=narJ PE=1 SV=1,narJ,3,122.99,26414.47486,b1226,C,Energy production and conversion,METABOLISM
+b1227,Respiratory nitrate reductase 1 gamma chain OS=Escherichia coli (strain K12) GN=narI PE=1 SV=1,narI,1,26.26,25462.376809999998,b1227,C,Energy production and conversion,METABOLISM
+b1241,Aldehyde-alcohol dehydrogenase OS=Escherichia coli (strain K12) GN=adhE PE=1 SV=2,adhE,58,4443.68,96048.64958,b1241,C,Energy production and conversion,METABOLISM
+b1276,Aconitate hydratase 1 OS=Escherichia coli (strain K12) GN=acnA PE=1 SV=3,acnA,31,2147.6,97597.74141,b1276,C,Energy production and conversion,METABOLISM
+b1300,Gamma-glutamyl-gamma-aminobutyraldehyde dehydrogenase OS=Escherichia coli (strain K12) GN=puuC PE=3 SV=2,puuC,7,591.95,53367.43457,b1300,C,Energy production and conversion,METABOLISM
+b1378,Probable pyruvate-flavodoxin oxidoreductase OS=Escherichia coli (strain K12) GN=ydbK PE=3 SV=2,ydbK,9,405.85,128725.189,b1378,C,Energy production and conversion,METABOLISM
+b1380,D-lactate dehydrogenase OS=Escherichia coli (strain K12) GN=ldhA PE=1 SV=1,ldhA,7,335.98,36493.43166,b1380,CHR,Energy production and conversion,METABOLISM
+b1385,Phenylacetaldehyde dehydrogenase OS=Escherichia coli (strain K12) GN=feaB PE=1 SV=2,feaB,4,172.36,53647.301060000005,b1385,C,Energy production and conversion,METABOLISM
+b1392,Probable phenylacetic acid degradation NADH oxidoreductase paaE OS=Escherichia coli (strain K12) GN=paaE PE=2 SV=1,paaE,1,27.16,39276.809689999995,b1392,C,Energy production and conversion,METABOLISM
+b1406,Putative oxidoreductase YdbC OS=Escherichia coli (strain K12) GN=ydbC PE=1 SV=1,ydbC,11,694.81,30668.769710000004,b1406,C,Energy production and conversion,METABOLISM
+b1415,Lactaldehyde dehydrogenase OS=Escherichia coli (strain K12) GN=aldA PE=1 SV=2,aldA,41,2623.32,52221.71682,b1415,C,Energy production and conversion,METABOLISM
+b1444,Gamma-aminobutyraldehyde dehydrogenase OS=Escherichia coli (strain K12) GN=prr PE=1 SV=1,prr,13,1244.43,50779.905269999996,b1444,C,Energy production and conversion,METABOLISM
+b1479,NAD-dependent malic enzyme OS=Escherichia coli (strain K12) GN=maeA PE=1 SV=4,maeA,22,1291.18,63139.249039999995,b1479,C,Energy production and conversion,METABOLISM
+b1501,Protein ydeP OS=Escherichia coli (strain K12) GN=ydeP PE=1 SV=1,ydeP,1,50.74,83423.72025,b1501,C,Energy production and conversion,METABOLISM
+b1525,Aldehyde dehydrogenase-like protein yneI OS=Escherichia coli (strain K12) GN=yneI PE=1 SV=2,sad,3,162.33,49668.16816,b1525,C,Energy production and conversion,METABOLISM
+b1588,Probable dimethyl sulfoxide reductase chain ynfF OS=Escherichia coli (strain K12) GN=ynfF PE=3 SV=4,ynfF,1,22.93,89911.87075,b1588,C,Energy production and conversion,METABOLISM
+b1602,NAD(P) transhydrogenase subunit beta OS=Escherichia coli (strain K12) GN=pntB PE=1 SV=1,pntB,15,925.02,48673.51161,b1602,C,Energy production and conversion,METABOLISM
+b1603,NAD(P) transhydrogenase subunit alpha OS=Escherichia coli (strain K12) GN=pntA PE=1 SV=2,pntA,15,876.92,54570.52368,b1603,C,Energy production and conversion,METABOLISM
+b1611,Fumarate hydratase class II OS=Escherichia coli (strain K12) GN=fumC PE=1 SV=1,fumC,16,1328.8,50438.71,b1611,C,Energy production and conversion,METABOLISM
+b1612,"Fumarate hydratase class I, aerobic OS=Escherichia coli (strain K12) GN=fumA PE=1 SV=2",fumA,36,2533.65,60242.56175,b1612,C,Energy production and conversion,METABOLISM
+b1629,Electron transport complex protein rnfC OS=Escherichia coli (strain K12) GN=rnfC PE=3 SV=1,rsxC,2,93.95,80103.92128,b1629,C,Energy production and conversion,METABOLISM
+b1631,Electron transport complex protein rnfG OS=Escherichia coli (strain K12) GN=rnfG PE=3 SV=1,rsxG,2,76.95,21880.35735,b1631,C,Energy production and conversion,METABOLISM
+b1650,N-ethylmaleimide reductase OS=Escherichia coli (strain K12) GN=nemA PE=1 SV=1,nemA,6,360.43,39474.11065,b1650,C,Energy production and conversion,METABOLISM
+b1687,Uncharacterized protein ydiJ OS=Escherichia coli (strain K12) GN=ydiJ PE=4 SV=1,ydiJ,24,1182.07,113157.9224,b1687,C,Energy production and conversion,METABOLISM
+b1746,N-succinylglutamate 5-semialdehyde dehydrogenase OS=Escherichia coli (strain K12) GN=astD PE=1 SV=1,astD,2,147.06,52975.16476,b1746,C,Energy production and conversion,METABOLISM
+b1765,Putative NAD(P)H nitroreductase ydjA OS=Escherichia coli (strain K12) GN=ydjA PE=1 SV=1,ydjA,5,368.45,20028.122369999997,b1765,C,Energy production and conversion,METABOLISM
+b2133,D-lactate dehydrogenase OS=Escherichia coli (strain K12) GN=dld PE=1 SV=3,dld,30,1565.74,64553.60212,b2133,C,Energy production and conversion,METABOLISM
+b2206,Periplasmic nitrate reductase OS=Escherichia coli (strain K12) GN=napA PE=1 SV=3,napA,2,107.06,92964.82882000001,b2206,C,Energy production and conversion,METABOLISM
+b2239,Glycerophosphoryl diester phosphodiesterase OS=Escherichia coli (strain K12) GN=glpQ PE=1 SV=2,glpQ,12,522.55,40799.26496,b2239,C,Energy production and conversion,METABOLISM
+b2241,Anaerobic glycerol-3-phosphate dehydrogenase subunit A OS=Escherichia coli (strain K12) GN=glpA PE=1 SV=1,glpA,14,681.29,58903.373470000006,b2241,C,Energy production and conversion,METABOLISM
+b2243,Anaerobic glycerol-3-phosphate dehydrogenase subunit C OS=Escherichia coli (strain K12) GN=glpC PE=1 SV=1,glpC,2,77.58,44061.53167,b2243,C,Energy production and conversion,METABOLISM
+b2276,NADH-quinone oxidoreductase subunit N OS=Escherichia coli (strain K12) GN=nuoN PE=1 SV=2,nuoN,1,72.16,51992.046760000005,b2276,C,Energy production and conversion,METABOLISM
+b2277,NADH-quinone oxidoreductase subunit M OS=Escherichia coli (strain K12) GN=nuoM PE=1 SV=1,nuoM,1,38.17,56468.78099,b2277,C,Energy production and conversion,METABOLISM
+b2278,NADH-quinone oxidoreductase subunit L OS=Escherichia coli (strain K12) GN=nuoL PE=1 SV=2,nuoL,1,50.5,66376.18892999999,b2278,CP,Energy production and conversion,METABOLISM
+b2279,NADH-quinone oxidoreductase subunit K OS=Escherichia coli (strain K12) GN=nuoK PE=1 SV=1,nuoK,1,56.19,10819.97948,b2279,C,Energy production and conversion,METABOLISM
+b2281,NADH-quinone oxidoreductase subunit I OS=Escherichia coli (strain K12) GN=nuoI PE=1 SV=1,nuoI,6,261.7,20506.12496,b2281,C,Energy production and conversion,METABOLISM
+b2282,NADH-quinone oxidoreductase subunit H OS=Escherichia coli (strain K12) GN=nuoH PE=1 SV=1,nuoH,3,152.72,36176.95551,b2282,C,Energy production and conversion,METABOLISM
+b2283,NADH-quinone oxidoreductase subunit G OS=Escherichia coli (strain K12) GN=nuoG PE=1 SV=4,nuoG,32,2198.98,100217.9683,b2283,C,Energy production and conversion,METABOLISM
+b2284,NADH-quinone oxidoreductase subunit F OS=Escherichia coli (strain K12) GN=nuoF PE=1 SV=3,nuoF,19,929.2,49242.939589999994,b2284,C,Energy production and conversion,METABOLISM
+b2285,NADH-quinone oxidoreductase subunit E OS=Escherichia coli (strain K12) GN=nuoE PE=1 SV=1,nuoE,11,656.05,18560.16361,b2285,C,Energy production and conversion,METABOLISM
+b2286,NADH-quinone oxidoreductase subunit C/D OS=Escherichia coli (strain K12) GN=nuoC PE=1 SV=3,nuoC,31,1769.66,68174.53177999999,b2286,C,Energy production and conversion,METABOLISM
+b2287,NADH-quinone oxidoreductase subunit B OS=Escherichia coli (strain K12) GN=nuoB PE=1 SV=1,nuoB,9,473.2,25021.386140000002,b2287,C,Energy production and conversion,METABOLISM
+b2288,NADH-quinone oxidoreductase subunit A OS=Escherichia coli (strain K12) GN=nuoA PE=3 SV=1,nuoA,3,144.85,16428.6146,b2288,C,Energy production and conversion,METABOLISM
+b2296,Acetate kinase OS=Escherichia coli (strain K12) GN=ackA PE=1 SV=1,ackA,16,1176.04,43245.07012,b2296,C,Energy production and conversion,METABOLISM
+b2463,NADP-dependent malic enzyme OS=Escherichia coli (strain K12) GN=maeB PE=1 SV=1,maeB,46,2485.6,82346.78295,b2463,C,Energy production and conversion,METABOLISM
+b2525,2Fe-2S ferredoxin OS=Escherichia coli (strain K12) GN=fdx PE=1 SV=2,fdx,8,427.59,12304.8297,b2525,C,Energy production and conversion,METABOLISM
+b2529,NifU-like protein OS=Escherichia coli (strain K12) GN=nifU PE=1 SV=1,iscU,9,494.3,13821.84619,b2529,C,Energy production and conversion,METABOLISM
+b2552,Flavohemoprotein OS=Escherichia coli (strain K12) GN=hmp PE=1 SV=1,hmp,11,595.45,43822.01281,b2552,C,Energy production and conversion,METABOLISM
+b2584,Uncharacterized protein yfiQ OS=Escherichia coli (strain K12) GN=yfiQ PE=4 SV=1,yfiQ,7,430.83,97907.95641,b2584,C,Energy production and conversion,METABOLISM
+b2661,Succinate-semialdehyde dehydrogenase [NADP+] OS=Escherichia coli (strain K12) GN=gabD PE=1 SV=1,gabD,18,1025.2,51669.60686,b2661,C,Energy production and conversion,METABOLISM
+b2717,Hydrogenase 3 maturation protease OS=Escherichia coli (strain K12) GN=hycI PE=1 SV=2,hycI,3,119.99,17027.3572,b2717,C,Energy production and conversion,METABOLISM
+b2721,Formate hydrogenlyase subunit 5 OS=Escherichia coli (strain K12) GN=hycE PE=1 SV=1,hycE,2,53.35,64920.752889999996,b2721,C,Energy production and conversion,METABOLISM
+b2790,Uncharacterized protein yqcA OS=Escherichia coli (strain K12) GN=yqcA PE=3 SV=1,yqcA,2,70.05,16245.97352,b2790,C,Energy production and conversion,METABOLISM
+b2799,Lactaldehyde reductase OS=Escherichia coli (strain K12) GN=fucO PE=1 SV=1,fucO,7,322.14,40600.70263,b2799,C,Energy production and conversion,METABOLISM
+b2834,Protein tas OS=Escherichia coli (strain K12) GN=tas PE=1 SV=1,tas,4,222.89,38457.6131,b2834,C,Energy production and conversion,METABOLISM
+b2867,Xanthine dehydrogenase FAD-binding subunit OS=Escherichia coli (strain K12) GN=xdhB PE=3 SV=1,xdhB,3,128.44,31519.11675,b2867,C,Energy production and conversion,METABOLISM
+b2868,Xanthine dehydrogenase iron-sulfur-binding subunit OS=Escherichia coli (strain K12) GN=xdhC PE=3 SV=1,xdhC,1,70.93,16892.39962,b2868,C,Energy production and conversion,METABOLISM
+b2895,Flavodoxin-2 OS=Escherichia coli (strain K12) GN=fldB PE=3 SV=1,fldB,2,160.91,19669.48877,b2895,C,Energy production and conversion,METABOLISM
+b2962,Probable Fe(2+)-trafficking protein OS=Escherichia coli (strain K12) GN=yggX PE=1 SV=2,yggX,10,371.21,10927.416009999999,b2962,CO,Energy production and conversion,METABOLISM
+b2975,Glycolate permease glcA OS=Escherichia coli (strain K12) GN=glcA PE=1 SV=1,glcA,2,92.76,58863.68758,b2975,C,Energy production and conversion,METABOLISM
+b2976,Malate synthase G OS=Escherichia coli (strain K12) GN=glcB PE=1 SV=3,glcB,30,1775.61,80419.85712999999,b2976,C,Energy production and conversion,METABOLISM
+b2979,Glycolate oxidase subunit glcD OS=Escherichia coli (strain K12) GN=glcD PE=3 SV=1,glcD,2,61.87,53759.593,b2979,C,Energy production and conversion,METABOLISM
+b2993,Hydrogenase 2 maturation protease OS=Escherichia coli (strain K12) GN=hybD PE=1 SV=2,hybD,1,72.62,17721.47511,b2993,C,Energy production and conversion,METABOLISM
+b2994,Hydrogenase-2 large chain OS=Escherichia coli (strain K12) GN=hybC PE=1 SV=2,hybC,3,227.61,62433.71435,b2994,C,Energy production and conversion,METABOLISM
+b2996,Hydrogenase-2 operon protein hybA OS=Escherichia coli (strain K12) GN=hybA PE=3 SV=1,hybA,4,219.88,35961.55914,b2996,C,Energy production and conversion,METABOLISM
+b3001,Uncharacterized protein yghZ OS=Escherichia coli (strain K12) GN=yghZ PE=1 SV=1,gpr,13,695.77,38789.70115,b3001,C,Energy production and conversion,METABOLISM
+b3011,Alcohol dehydrogenase YqhD OS=Escherichia coli (strain K12) GN=yqhD PE=1 SV=1,yqhD,20,1170.24,42052.789469999996,b3011,C,Energy production and conversion,METABOLISM
+b3081,"2,4-dienoyl-CoA reductase [NADPH] OS=Escherichia coli (strain K12) GN=fadH PE=1 SV=3",fadH,10,558.77,72614.31572,b3081,C,Energy production and conversion,METABOLISM
+b3114,Keto-acid formate acetyltransferase OS=Escherichia coli (strain K12) GN=tdcE PE=1 SV=2,tdcE,1,319.83,85863.1899,b3114,C,Energy production and conversion,METABOLISM
+b3160,Uncharacterized protein yhbW OS=Escherichia coli (strain K12) GN=yhbW PE=4 SV=1,yhbW,4,216.36,37087.72888,b3160,C,Energy production and conversion,METABOLISM
+b3236,Malate dehydrogenase OS=Escherichia coli (strain K12) GN=mdh PE=1 SV=1,mdh,27,2213.0,32299.20422,b3236,C,Energy production and conversion,METABOLISM
+b3253,Putative quinone oxidoreductase YhdH OS=Escherichia coli (strain K12) GN=yhdH PE=1 SV=1,acuI,13,827.53,34683.88067,b3253,CR,Energy production and conversion,METABOLISM
+b3355,Probable phosphoribulokinase OS=Escherichia coli (strain K12) GN=prkB PE=3 SV=1,prkB,5,537.41,32305.49054,b3355,C,Energy production and conversion,METABOLISM
+b3365,Nitrite reductase [NAD(P)H] large subunit OS=Escherichia coli (strain K12) GN=nirB PE=3 SV=4,nirB,8,439.9,93044.21918,b3365,C,Energy production and conversion,METABOLISM
+b3426,Aerobic glycerol-3-phosphate dehydrogenase OS=Escherichia coli (strain K12) GN=glpD PE=1 SV=3,glpD,29,1604.83,56697.069970000004,b3426,C,Energy production and conversion,METABOLISM
+b3449,Glycerophosphoryl diester phosphodiesterase OS=Escherichia coli (strain K12) GN=ugpQ PE=1 SV=1,ugpQ,4,283.56,27374.04865,b3449,C,Energy production and conversion,METABOLISM
+b3500,Glutathione reductase OS=Escherichia coli (strain K12) GN=gor PE=1 SV=1,gor,19,1191.0,48723.63153,b3500,C,Energy production and conversion,METABOLISM
+b3528,Aerobic C4-dicarboxylate transport protein OS=Escherichia coli (strain K12) GN=dctA PE=1 SV=1,dctA,5,231.11,45388.7442,b3528,C,Energy production and conversion,METABOLISM
+b3551,Biotin sulfoxide reductase OS=Escherichia coli (strain K12) GN=bisC PE=3 SV=3,bisC,5,262.53,85778.27471,b3551,C,Energy production and conversion,METABOLISM
+b3553,Glyoxylate/hydroxypyruvate reductase B OS=Escherichia coli (strain K12) GN=ghrB PE=1 SV=3,ghrB,15,627.56,35355.05266,b3553,CHR,Energy production and conversion,METABOLISM
+b3588,Aldehyde dehydrogenase B OS=Escherichia coli (strain K12) GN=aldB PE=1 SV=2,aldB,30,1607.71,56252.479060000005,b3588,C,Energy production and conversion,METABOLISM
+b3594,Protein yibA OS=Escherichia coli (strain K12) GN=yibA PE=1 SV=1,yibA,5,157.05,31835.55097,b3594,C,Energy production and conversion,METABOLISM
+b3605,L-lactate dehydrogenase [cytochrome] OS=Escherichia coli (strain K12) GN=lldD PE=1 SV=1,lldD,9,551.7,42682.9454,b3605,C,Energy production and conversion,METABOLISM
+b3608,Glycerol-3-phosphate dehydrogenase [NAD(P)+] OS=Escherichia coli (strain K12) GN=gpsA PE=3 SV=1,gpsA,6,334.41,36320.64479,b3608,C,Energy production and conversion,METABOLISM
+b3731,ATP synthase epsilon chain OS=Escherichia coli (strain K12) GN=atpC PE=1 SV=2,atpC,9,754.25,15040.73788,b3731,C,Energy production and conversion,METABOLISM
+b3732,ATP synthase subunit beta OS=Escherichia coli (strain K12) GN=atpD PE=1 SV=2,atpD,38,2757.77,50275.81931,b3732,C,Energy production and conversion,METABOLISM
+b3733,ATP synthase gamma chain OS=Escherichia coli (strain K12) GN=atpG PE=1 SV=1,atpG,16,878.86,31539.27915,b3733,C,Energy production and conversion,METABOLISM
+b3734,ATP synthase subunit alpha OS=Escherichia coli (strain K12) GN=atpA PE=1 SV=1,atpA,29,2800.06,55169.73662,b3734,C,Energy production and conversion,METABOLISM
+b3735,ATP synthase subunit delta OS=Escherichia coli (strain K12) GN=atpH PE=1 SV=1,atpH,12,788.83,19301.95116,b3735,C,Energy production and conversion,METABOLISM
+b3736,ATP synthase subunit b OS=Escherichia coli (strain K12) GN=atpF PE=1 SV=1,atpF,11,685.03,17235.289819999998,b3736,C,Energy production and conversion,METABOLISM
+b3737,ATP synthase subunit c OS=Escherichia coli (strain K12) GN=atpE PE=1 SV=1,atpE,1,73.23,8232.38507,b3737,C,Energy production and conversion,METABOLISM
+b3738,ATP synthase subunit a OS=Escherichia coli (strain K12) GN=atpB PE=1 SV=1,atpB,3,280.94,30265.357999999997,b3738,C,Energy production and conversion,METABOLISM
+b3742,Protein mioC OS=Escherichia coli (strain K12) GN=mioC PE=1 SV=4,mioC,2,136.01,15779.90774,b3742,C,Energy production and conversion,METABOLISM
+b3850,Protoporphyrinogen IX dehydrogenase [menaquinone] OS=Escherichia coli (strain K12) GN=hemG PE=1 SV=1,hemG,5,283.55,21194.86359,b3850,CH,Energy production and conversion,METABOLISM
+b3892,"Formate dehydrogenase, cytochrome b556(fdo) subunit OS=Escherichia coli (strain K12) GN=fdoI PE=1 SV=1",fdoI,2,42.98,24572.12915,b3892,C,Energy production and conversion,METABOLISM
+b3893,Formate dehydrogenase-O iron-sulfur subunit OS=Escherichia coli (strain K12) GN=fdoH PE=1 SV=1,fdoH,6,280.88,33060.8989,b3893,C,Energy production and conversion,METABOLISM
+b3894,Formate dehydrogenase-O major subunit OS=Escherichia coli (strain K12) GN=fdoG PE=1 SV=5,fdoG,16,1159.21,112549.0,b3894,C,Energy production and conversion,METABOLISM
+b3895,Protein FdhD OS=Escherichia coli (strain K12) GN=fdhD PE=3 SV=1,fdhD,1,25.79,30522.510580000002,b3895,C,Energy production and conversion,METABOLISM
+b3924,Ferredoxin--NADP reductase OS=Escherichia coli (strain K12) GN=fpr PE=1 SV=4,fpr,5,195.94,27715.307119999998,b3924,C,Energy production and conversion,METABOLISM
+b3926,Glycerol kinase OS=Escherichia coli (strain K12) GN=glpK PE=1 SV=2,glpK,35,2432.72,56177.25025,b3926,C,Energy production and conversion,METABOLISM
+b3945,Glycerol dehydrogenase OS=Escherichia coli (strain K12) GN=gldA PE=1 SV=1,gldA,8,386.23,38669.68853,b3945,C,Energy production and conversion,METABOLISM
+b3956,Phosphoenolpyruvate carboxylase OS=Escherichia coli (strain K12) GN=ppc PE=1 SV=1,ppc,50,3589.35,98982.23464,b3956,C,Energy production and conversion,METABOLISM
+b3962,Soluble pyridine nucleotide transhydrogenase OS=Escherichia coli (strain K12) GN=sthA PE=1 SV=5,sthA,20,1458.79,51509.773839999994,b3962,C,Energy production and conversion,METABOLISM
+b4014,Malate synthase A OS=Escherichia coli (strain K12) GN=aceB PE=1 SV=1,aceB,32,2238.64,60217.52759,b4014,C,Energy production and conversion,METABOLISM
+b4015,Isocitrate lyase OS=Escherichia coli (strain K12) GN=aceA PE=1 SV=1,aceA,36,2786.72,47473.57659,b4015,C,Energy production and conversion,METABOLISM
+b4051,Quinone oxidoreductase 1 OS=Escherichia coli (strain K12) GN=qorA PE=1 SV=1,qorA,11,730.37,35132.52887,b4051,CR,Energy production and conversion,METABOLISM
+b4077,Proton glutamate symport protein OS=Escherichia coli (strain K12) GN=gltP PE=1 SV=2,gltP,2,69.15,47110.82199,b4077,C,Energy production and conversion,METABOLISM
+b4122,"Fumarate hydratase class I, anaerobic OS=Escherichia coli (strain K12) GN=fumB PE=1 SV=2",fumB,4,1370.79,60049.35305,b4122,C,Energy production and conversion,METABOLISM
+b4153,Fumarate reductase iron-sulfur subunit OS=Escherichia coli (strain K12) GN=frdB PE=1 SV=2,frdB,5,250.45,27087.160480000002,b4153,C,Energy production and conversion,METABOLISM
+b4154,Fumarate reductase flavoprotein subunit OS=Escherichia coli (strain K12) GN=frdA PE=1 SV=3,frdA,9,545.2,65911.64933,b4154,C,Energy production and conversion,METABOLISM
+b4226,Inorganic pyrophosphatase OS=Escherichia coli (strain K12) GN=ppa PE=1 SV=2,ppa,10,663.31,19673.02389,b4226,C,Energy production and conversion,METABOLISM
+b4467,Glycolate oxidase iron-sulfur subunit OS=Escherichia coli (strain K12) GN=glcF PE=4 SV=1,glcF,2,116.97,45063.30465,b4467,C,Energy production and conversion,METABOLISM
+b4468,Glycolate oxidase subunit glcE OS=Escherichia coli (strain K12) GN=glcE PE=4 SV=1,glcE,1,84.96,38318.469880000004,b4468,C,Energy production and conversion,METABOLISM
+b4469,UPF0313 protein ygiQ OS=Escherichia coli (strain K12) GN=ygiQ PE=3 SV=3,ygiQ,1,72.72,83406.32968,b4469,C,Energy production and conversion,METABOLISM
