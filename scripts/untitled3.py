@@ -31,10 +31,12 @@ ribosome_stoichiometry = {g:morethanone[g] if g in morethanone else 1 for g in r
 ribosome_stoichiometry = pd.DataFrame.from_dict(ribosome_stoichiometry.items()).set_index(0)
 ribosome_stoichiometry.index.name = 'bnumber'
 ribosome_stoichiometry = ribosome_stoichiometry[1]
-ribosome_mmol_gCDW = mmol_gCDW.loc[ribo_genes]
+ribosome_mmol_gCDW = mmol_gCDW.loc[ribosome_genes]
 
 ribosome_abundance = ribosome_mmol_gCDW.mul(ribosome_stoichiometry,axis=0).dropna()
 ribosome_abundance = ribosome_abundance.sum() / ribosome_stoichiometry[ribosome_abundance.index].sum() #mmol_gCDW
+
+# degradation rate of proteins is 1/20 h-1. That is, after 20 minutes half the proteome is degraded
 ribosome_flux = (mg_gCDW / 110 * (gr + 1/20.) / 3600).sum()#mmol_AA_gCDW_s
 
 
@@ -81,7 +83,7 @@ bremer = np.array([[0.6, 1, 1.5, 2, 2.5],[12,16, 18, 20, 21]])
 gCDW_cell = np.array([148, 258, 433, 641, 865]) * 1e-15 #gCDW_cell
 ribosomes_per_cell = 1e3 * np.array([6.8, 13.5, 26.3, 45.1, 72]) / avogadro * 1e3 # mmol_cell
 mmol_ribosomes_per_gCDW = ribosomes_per_cell / gCDW_cell
-bremer_kapp = (bremer[1] * mmol_ribosomes_per_gCDW + upper_limit_degredation_rate) / mmol_ribosomes_per_gCDW
+bremer_kapp = (bremer[1] * mmol_ribosomes_per_gCDW) / mmol_ribosomes_per_gCDW
 
 plt.figure(figsize=(8,5))
 fontsize = 15
@@ -106,15 +108,15 @@ for c in conditions:
         if R.gc['comments'][c] == 'new':
             plt.scatter(gr[c], ribo_kapp[c],s=40,edgecolor='r',c='',zorder=2)
             plt.errorbar(gr[c], ribo_kapp[c], xerr=xstd[c],c='r')
-        else:
-            plt.scatter(gr[c], ribo_kapp[c],s=40,edgecolor='r',c='',zorder=2)
-            plt.errorbar(gr[c], ribo_kapp[c], xerr=xstd[c],c='r')
+#        else:
+#            plt.scatter(gr[c], ribo_kapp[c],s=40,edgecolor='0.5',c='',zorder=2)
+#            plt.errorbar(gr[c], ribo_kapp[c], xerr=xstd[c],c='0.5')
 
 [tick.label.set_fontsize(fontsize) for tick in ax.xaxis.get_major_ticks()]
 [tick.label.set_fontsize(fontsize) for tick in ax.yaxis.get_major_ticks()]
     
-#plt.scatter(bremer[0],bremer_kapp,edgecolor='y',c='',marker='D',s=40)
-ax.set_xlim(.25,.7)
+plt.scatter(bremer[0],bremer_kapp,edgecolor='y',c='',marker='D',s=40)
+#ax.set_xlim(.25,.7)
 ax.set_ylim(-1,25)
 plt.tight_layout()
 plt.savefig('../res/ribosome rate by gr.pdf')
