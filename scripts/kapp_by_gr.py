@@ -45,10 +45,13 @@ cm = plt.cm.get_cmap('Blues')
 #conds = ['Chemostat u=0.11', 'Chemostat u=0.20', 'Chemostat u=0.31', 'Chemostat u=0.51']
 #i = 0
 for c in gc.index:
-    y = R.kapp[c].dropna()
-#    label = '$\mu=%.01f\,h^{-1}$'%x[c]
-    cdf(y,color=cm(y.median()),ax=ax,lw=2.5)
-
+    try:
+        y = R.kapp[c].dropna()
+    #    label = '$\mu=%.01f\,h^{-1}$'%x[c]
+        cdf(y,color=cm(y.median()),ax=ax,lw=2.5)
+    except:
+        continue
+    
 ax.set_xscale('log')
 ax.set_xlim(1e-4,1e2)
 ax.set_ylim(0,1)

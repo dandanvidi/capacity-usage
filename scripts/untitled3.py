@@ -6,7 +6,7 @@ from cobra.manipulation import remove_genes, undelete_model_genes
 from cobra.flux_analysis import single_gene_deletion
 from cobra.flux_analysis.parsimonious import optimize_minimal_flux
 sys.path.append(os.path.expanduser('~/git/kvivo_max/scripts/'))
-from catalytic_rates import rates, perform_pFBA
+from catalytic_rates import rates
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import minimize
@@ -48,10 +48,10 @@ plt.figure()
 a = gc[gc.comments=='new']
 x = gr[gc.index - a.index]
 y = ribosome_abundance[gc.index - a.index]
-popt, pcov = curve_fit(lambda a,b,x: a*x+b, x, y)
-intercept, slope = popt
-plt.plot(gr, gr*slope+intercept)
-plt.plot(gr, ribosome_abundance, 'o')
+#popt, pcov = curve_fit(lambda a,b,x: a*x+b, x, y)
+#intercept, slope = popt
+#plt.plot(gr, gr*slope+intercept)
+#plt.plot(gr, ribosome_abundance, 'o')
 
 #res = minimize(lambda a, b: ribosome_flux - (a*ribosome_abundance - a*b), (intercept, 20))
 
