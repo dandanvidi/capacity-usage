@@ -6,9 +6,7 @@ from cobra.flux_analysis.variability import flux_variability_analysis
 
 gc = pd.DataFrame.from_csv('../data/growth_conditions.csv')
 gc = gc[gc.media_key>0]
-
 m = create_cobra_model_from_sbml_file('../data/iJO1366.xml')
-convert_to_irreversible(m)
 
 fake = Metabolite(id='fake')
 m.add_metabolites(fake)                
@@ -19,8 +17,9 @@ flux_counter.add_metabolites(metabolites={fake:-1})
 m.add_reaction(flux_counter) 
 m.change_objective(flux_counter)
 
-m.reactions.get_by_id('EX_glc_e_reverse').upper_bound = 0
+m.reactions.get_by_id('EX_glc_e').lower_bound = 0
    
+convert_to_irreversible(m)
 rxns = {r.id:r for r in m.reactions}
 
 index = pd.MultiIndex.from_product([gc.index, ['maximum', 'minimum']])
@@ -35,13 +34,14 @@ for i,c in enumerate(gc.index):
 
     for j, r in enumerate(m.reactions):
         fva_results = flux_variability_analysis(m,reaction_list=[r],
-                                            objective_sense='minimize',fraction_of_optimum=1.0001)    
+                                            objective_sense='minimize',fraction_of_optimum=1.0)    
         fva = pd.DataFrame.from_dict(fva_results)
         fluxes[r.id][c,'maximum'] = fva.loc['maximum'][0]
         fluxes[r.id][c,'minimum'] = fva.loc['minimum'][0]
         print c, i, j, r
-        
+
     rxns['EX_'+gc['media_key'][c]+'_e'].lower_bound = 0
     
+    break
 fluxes.dropna(how='all', inplace=True)
-fluxes.T.to_csv('../data/flux_variability_[mmol_gCDW_h]_01%.csv')    
+fluxes.T.to_csv('../data/flux_variability_[mmol_gCDW_s]_sanity.csv')    

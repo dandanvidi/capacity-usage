@@ -4,13 +4,13 @@ import csv
 from matplotlib_venn import venn2
 import matplotlib.pyplot as plt
 from copy import deepcopy
-
+import numpy as np
 
 protein_info = pd.read_csv('../data/protein_abundance_info.csv', sep='\t')
 gc = pd.DataFrame.from_csv("../data/growth_conditions.csv")
 gc = gc[gc.reference=='Schmidt et al. 2015']
 gr = gc['growth rate [h-1]'][gc.index]
-fL_cell = gc['single cell volume [fL]']/2 # fL (cell volumes are overestimated by a factor of 1.7)
+fL_cell = gc['single cell volume [fL]'] /2 # fL (cell volumes are overestimated by a factor of 1.7)
 fg_cell_old = pd.read_csv('../data/protein_abundance_[fg_cell].csv')
 
 copies_cell_persist = pd.read_csv('../data/protein_abundance_persistors[copies_cell].csv')
@@ -52,40 +52,113 @@ def genes_by_function(name):
 
     return {b for b,ko in b_to_KEGG.iteritems() if ko in f_KEGG}
     
-from cobra.core import Metabolite, Reaction
-from cobra.io.sbml import create_cobra_model_from_sbml_file
-from cobra.manipulation.modify import convert_to_irreversible
-from cobra.flux_analysis.variability import flux_variability_analysis
-
-def perform_pFVA(model, cs, gr, ur, reactions, fraction_of_optimum=1.0):
-
-    model = deepcopy(model)
-    rxns = dict([(r.id, r) for r in model.reactions])
-
-    rxns['EX_glc_e'].lower_bound = 0 # uptake of carbon source reaction is initialized    
-    rxns['EX_' + cs + '_e'].lower_bound = -ur # redefine sole carbon source uptake reaction in mmol/gr/h
-
-    rxns['Ec_biomass_iJO1366_core_53p95M'].upper_bound = gr        
-    rxns['Ec_biomass_iJO1366_core_53p95M'].lower_bound = gr     
-#    rxns['PDX5PO2'].upper_bound = 0
-    fake = Metabolite(id='fake')
-    model.add_metabolites(fake)        
-            
-    for r in model.reactions:
-        r.add_metabolites({fake:1})
-        
-    flux_counter = Reaction(name='flux_counter')
-    flux_counter.add_metabolites(metabolites={fake:-1})                
-
-    model.add_reaction(flux_counter) 
-    model.change_objective(flux_counter)
+def convert_copies_fL_to_mmol_gCDW(copies_fL):
+ 
+    rho = 1100 # average cell density gr/liter
+    DW_fraction = 0.3 # fraction of DW of cells
+    Avogadro = 6.02214129 # Avogadro's number "exponent-less"
+    mmol_L = copies_fL / (Avogadro*1e5)
+    mmol_gCDW = mmol_L / (rho * DW_fraction)
+    return mmol_gCDW
     
-    fva = flux_variability_analysis(model, 
-                                    reaction_list=reactions, 
-                                    objective_sense='minimize',
-                                    fraction_of_optimum=fraction_of_optimum)
+def convert_mmol_gCDW_to_mg_gCDW(mmol_gCDW):
+        
+    protein_info = pd.DataFrame.from_csv('../data/ecoli_genome_info.tsv', sep='\t')
+    protein_g_mol = protein_info['molecular_weight[Da]']
+    mg_gCDW = mmol_gCDW.mul(protein_g_mol,axis=0)
+    mg_gCDW.replace(np.nan, 0, inplace=True)
+    return mg_gCDW
+
+def convert_copies_fL_to_mg_gCDW(E):
+    tmp = convert_copies_fL_to_mmol_gCDW(E)
+    return convert_mmol_gCDW_to_mg_gCDW(tmp)
+
+
+def get_umol_gCDW_min_from_pFVA(pFVA):
+
+    conds = pFVA.index.levels[0]
+    x = pFVA.loc[[(c, 'maximum') for c in conds]]
+    x.set_index(conds, inplace=True)
+    x = x[x>1e-10]
+    return (x * 1000) / 60
+
+def specific_actitivy(V,E,model):
+
+    SA = pd.DataFrame(index=V.index, columns=V.columns)    
+    for c in V.columns:
+        v = V[c].dropna()
+        for rid in v.index:
+            if rid == 'flux_counter':
+                continue
+            r = model.reactions.get_by_id(rid)
+            genes = {g.id:g for g in r.genes}
+            if 's0001' in genes:
+                continue
+            weight = []
+            for i, (gid, g) in enumerate(genes.iteritems()):
+                rxns = {r.id for r in list(g.reactions)} & set(v.index)
+                weight.append(E[c][gid] / float(len(rxns)))
+            total_weight = sum(weight)
+            if total_weight > 0:
+                SA[c][rid] = v[rid] / total_weight
+    return SA
                                     
-    return fva
+def gene_to_flux_carrying_rxns(V,model):
+    out = {}
+    for c in V.columns:
+        out[c] = {}        
+        v = V[c].dropna()
+        for g in model.genes:
+            rxns = {r.id for r in list(g.reactions)} & set(v.index)
+            if len(rxns)>0:
+                out[c][g.id] = rxns
+    return out
+    
+def get_metabolic_capacity(V,E,model):
+    tmp = gene_to_flux_carrying_rxns(V,model)
+    capacity = pd.Series({c:E.loc[tmp[c].keys()][c].sum() for c in V.columns})
+    return capacity
+
+def get_usage(V,E,model):
+    SA = specific_actitivy(V,E,model)
+    kmax = SA.max(axis=1)
+    return V.div(kmax,axis=0)
+
+def get_capacity_usage(V,E,model):
+    capacity = get_metabolic_capacity(V,E,model)
+    usage = get_usage(V,E,model)
+    return usage.sum() / capacity
+
+
+def bootstrap_capacity_usage_error(V,E,model,iterations=1000):
+    UC = pd.DataFrame(index=range(iterations),columns=V.columns)
+    for i in xrange(iterations):
+        newE = pd.DataFrame(index=E.index, columns=E.columns)
+        for c in V.columns:
+            x = E[c]
+            x = x[x>0]       
+            rand = np.random.choice(x.values, len(x), replace=True)
+            newE[c][x.index] = rand
+        newE.replace(np.nan, 0, inplace=True)
+        UC.loc[i] = get_capacity_usage(V,newE,model)
+        print i,
+    return UC.std()
+'''            
+    x = x.dropna()
+    w = w.dropna()
+    ix = x.index & w.index
+    x = x[ix].values
+    w = w[ix].values
+    Mw = np.zeros(1000)
+    for i in xrange(1000):
+        rand = np.random.choice(range(len(x)), len(x), replace=True)
+        newx = x[rand]
+        neww = w[rand]
+        Mw[i] = sum(newx*neww)/sum(neww)
+    return np.std(Mw)
+'''    
+#    print len(fva.keys())    
+#    return fva
     
 map_proteomics(copies_cell_persist)
 map_proteomics(protein_info)

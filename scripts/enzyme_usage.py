@@ -26,7 +26,6 @@ kmax = R.kmax['kmax per chain [s^-1]']
 kmax_usage = kapp.div(kmax, axis=0).dropna(how='all')
 kmax_usage = kmax_usage[gc.index & kmax_usage.columns]
 
-
 effective_capacity = pd.DataFrame(index=kmax_usage.index, columns=conditions)
 for reac in effective_capacity.index:
     r = R.rxns[reac]
