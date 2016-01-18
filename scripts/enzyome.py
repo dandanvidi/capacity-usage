@@ -71,7 +71,7 @@ ax.set_ylabel('capacity usage', size=15)
 [tick.label.set_fontsize(15) for tick in ax.yaxis.get_major_ticks()]
 
 plt.tight_layout()
-#plt.savefig('../res/capacity usage.pdf')
+plt.savefig('../res/capacity usage.pdf')
 #percentage = (capacity / mg_gCDW.sum()).dropna() *100
 
 #    unique[k] = set()
