@@ -33,22 +33,19 @@ expression_CV.replace(np.nan,0, inplace=True)
 expression_CV = expression_CV / 100 
 expression_std = expression_CV.mul(mg_gCDW.mean(axis=1),axis=0)
 
-mg_gCDW_err = pd.DataFrame(index=mg_gCDW.index,columns=mg_gCDW.columns)
-for c in mg_gCDW.columns:
-    for g in mg_gCDW.index:
-        mg_gCDW_err[c][g] = unumpy.uarray(mg_gCDW[c][g], expression_std[c][g])
-
 umol_gCDW_min = get_umol_gCDW_min_from_pFVA(pFVA)
 umol_gCDW_min = umol_gCDW_min.T[conds]
 
 E = mg_gCDW
 V = umol_gCDW_min
 
+SA = specific_actitivy(V,E,model)
+E_by_reac = V/SA
 capacity = get_metabolic_capacity(V,E,model)
 usage = get_usage(V,E,model)
 capacity_usage = get_capacity_usage(V,E,model)
 
-standard_error = bootstrap_capacity_usage_error(V,E,model,iterations=1000)
+#standard_error = bootstrap_capacity_usage_error(V,E,model,iterations=1000)
 
 fig = plt.figure(figsize=(8,8))
 ax = plt.axes()
@@ -60,7 +57,7 @@ for i, c in enumerate(conds):
     elif gc['growth mode'][c] == 'chemostat':
         color = '0.5'
     plt.scatter(gr[c],capacity_usage[c],c=color,s=80,edgecolor='none')
-    ax.errorbar(gr[c],capacity_usage[c],standard_error[c],c='r')
+#    ax.errorbar(gr[c],capacity_usage[c],standard_error[c],c='r')
 
 
 ax.set_xlim(0,0.8)
@@ -71,7 +68,7 @@ ax.set_ylabel('capacity usage', size=15)
 [tick.label.set_fontsize(15) for tick in ax.yaxis.get_major_ticks()]
 
 plt.tight_layout()
-plt.savefig('../res/capacity usage.pdf')
+#plt.savefig('../res/capacity usage.pdf')
 #percentage = (capacity / mg_gCDW.sum()).dropna() *100
 
 #    unique[k] = set()

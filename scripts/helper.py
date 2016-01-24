@@ -124,6 +124,11 @@ def get_usage(V,E,model):
     kmax = SA.max(axis=1)
     return V.div(kmax,axis=0)
 
+def get_efficiency(V,E,model):
+    SA = specific_actitivy(V,E,model)
+    kmax = SA.max(axis=1)
+    return SA.div(kmax,axis=0)
+    
 def get_capacity_usage(V,E,model):
     capacity = get_metabolic_capacity(V,E,model)
     usage = get_usage(V,E,model)
@@ -143,6 +148,21 @@ def bootstrap_capacity_usage_error(V,E,model,iterations=1000):
         UC.loc[i] = get_capacity_usage(V,newE,model)
         print i,
     return UC.std()
+
+def get_foldchange(V,E,gc):
+    
+    gr = gc['growth rate [h-1]']
+    
+    combs_all = [(i,j) for (i,j) in combinations(R.gc.index, 2) if gr[j] > gr[i]]    
+    delta_mu = pd.Series(data = map(lambda x: np.log2(gr[x[1]]/gr[x[0]]), combs_all),
+                         index = combs_all)
+    delta_p = pd.DataFrame(index=reactions, columns=combs)
+    delta_v = pd.DataFrame(index=reactions, columns=combs)
+    for (i, j) in combs:
+        delta_p[(i,j)] = np.log2(p[j] / p[i])
+        delta_v[(i,j)] = np.log2(v[j] / v[i])
+    return delta_p, delta_v, delta_mu
+
 '''            
     x = x.dropna()
     w = w.dropna()
