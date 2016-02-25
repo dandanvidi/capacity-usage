@@ -2,8 +2,8 @@ import pandas as pd
 import sys, os, csv
 from scipy.optimize import curve_fit
 from helper import *
-from cobra.manipulation import remove_genes, undelete_model_genes
-from cobra.flux_analysis import single_gene_deletion
+#from cobra.manipulation import remove_genes, undelete_model_genes
+#from cobra.flux_analysis import single_gene_deletion
 from cobra.flux_analysis.parsimonious import optimize_minimal_flux
 sys.path.append(os.path.expanduser('~/git/kvivo_max/scripts/'))
 from catalytic_rates import rates
@@ -18,6 +18,11 @@ model = R.model
 data = pd.DataFrame.from_csv('../data/protein_abundance[mg_gCDW].csv', sep='\t')
 conditions = data.columns & R.gc.index
 
+gc = pd.DataFrame.from_csv('../data/growth_conditions.csv')
+gc = gc[gc.media_key>0]
+gc = gc[gc.reference == 'Schmidt et al. 2015']
+gc = gc[gc.strain == 'BW25113']
+conditions = gc.index
 gr = R.gc['growth rate [h-1]'][conditions]
 
 mg_gCDW = data[conditions]
@@ -60,6 +65,7 @@ y = ribosome_abundance[gc.index - a.index]
 
 ribo_kapp = ((ribosome_flux) / ribosome_abundance) / 0.95 #1/s
 
+ribo_kapp = ribo_kapp/20
 
 
 
@@ -115,9 +121,9 @@ for c in conditions:
 [tick.label.set_fontsize(fontsize) for tick in ax.xaxis.get_major_ticks()]
 [tick.label.set_fontsize(fontsize) for tick in ax.yaxis.get_major_ticks()]
     
-plt.scatter(bremer[0],bremer_kapp,edgecolor='y',c='',marker='D',s=40)
-#ax.set_xlim(.25,.7)
-ax.set_ylim(-1,25)
+#plt.scatter(bremer[0],bremer_kapp,edgecolor='y',c='',marker='D',s=40)
+ax.set_xlim(0,1)
+ax.set_ylim(0,1)
 plt.tight_layout()
 plt.savefig('../res/ribosome rate by gr.pdf')
 
