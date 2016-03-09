@@ -7,6 +7,7 @@ import numpy as np
 from helper import *
 import uncertainties.unumpy as unumpy 
 from scipy.stats import pearsonr
+from scipy.optimize import curve_fit
 
 gc = gc[gc.reference == 'Schmidt et al. 2015']
 gc = gc[gc.strain == 'BW25113']
@@ -17,33 +18,69 @@ conditions = gr.index
 
 copies_fL = proteomics[conditions]
 mmol_gCDW_h = pFBA[conditions]
-
+#
 mg_gCDW = convert_copies_fL_to_mg_gCDW(copies_fL)
 umol_gCDW_min = mmol_gCDW_h * 1000 / 60
-
-#use FVA instead of pFBA
-#umol_gCDW_min = get_umol_gCDW_min_from_pFVA(pFVA)
-#umol_gCDW_min = umol_gCDW_min.T[conditions]
-
-
+#
 SA = specific_activity(umol_gCDW_min,mg_gCDW,model)
 E_by_reac = (umol_gCDW_min/SA).loc[SA.index]
-
+#
 ECU = enzyme_capacity_usage(SA)
+
+#%%
 MC = metabolic_capacity(umol_gCDW_min,mg_gCDW,model)
 MCU = metabolic_capacity_usage(umol_gCDW_min,mg_gCDW,model)[conditions]
 
+plt.figure(figsize=(7,7))
 plt.scatter(gr,MCU)
 r,p = pearsonr(gr,MCU)
-plt.plot(range(0,2), range(0,2))
+
+#a = np.cov(gr, MCU)[0,0] / np.var(gr)
+a, cov = curve_fit(lambda a,x:a*x, gr,MCU)
+plt.plot([0, 1], [0, a*1])
 ax = plt.axes()
 ax.set_xlim(0,0.8)
 ax.set_ylim(0,0.8)
-plt.annotate('$r^2 = %.2f$'%r**2,(0.15,0.875),xycoords='figure fraction',size=15)
+plt.annotate('$r^2 = \, %.2f$\n$\mu_{max} = \, %.2f \, h^{-1}$'% (r**2, 1/a),
+             (0.15,0.8),xycoords='figure fraction',size=15)
 ax.set_xlabel('growth rate [h$^{-1}$]', size=15)
 ax.set_ylabel('capacity usage of metabolism', size=15)
 [tick.label.set_fontsize(15) for tick in ax.xaxis.get_major_ticks()]
 [tick.label.set_fontsize(15) for tick in ax.yaxis.get_major_ticks()]
+
+
+
+#%%
+CU = ECU*E_by_reac
+SUBSYSTEMS = pd.Series(index=ECU.index, data=[rxns[rx].subsystem for rx in ECU.index])
+CU_sub = (CU[conditions].groupby(by=SUBSYSTEMS).sum() / 
+         E_by_reac[conditions].groupby(by=SUBSYSTEMS).sum())
+chemo = [c for c in conditions if gc['growth mode'][c]=='chemostat']
+for s in set(SUBSYSTEMS):
+    plt.figure(figsize=(10,10))
+    plt.title(s, size=15)
+    plt.ylabel('capacity usage [%]', size=15)
+    plt.xlabel('growth rate [h-1]', size=15)
+    plt.plot(gr, MCU, 'k*')
+    plt.scatter(gr, CU_sub.loc[s])
+    try:
+        plt.scatter(gr[chemo], CU_sub[chemo].loc[s], c='r')
+    except:
+        continue
+    plt.xlim(0,1)
+    plt.ylim(0,1)
+#E_by_reac['subsystem'] = [rxns[rx].subsystem for rx in E_by_reac.index]
+#E_by_reac = E_by_reac[E_by_reac.subsystem!='']
+#ECU = ECU[ECU.subsystem!='']
+#ECU_by_subsys = ECU.groupby('subsystem').sum()
+#E_by_reac_by_subsys = E_by_reac.groupby('subsystem').sum()
+#CU_by_subsys = CU_by_subsys[conditions]
+#plt.figure()
+#CU_by_subsys = ECU_by_subsys.div(E_by_reac_by_subsys)
+#for s in CU_by_subsys.index:
+#    plt.plot(gr,CU_by_subsys.loc[s],'r', marker='o')
+
+#%%
 #
 #
 #

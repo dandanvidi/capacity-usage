@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Feb 25 17:28:17 2016
+
+@author: dan
+"""
+
 import cPickle as pickle
 import pandas as pd
 from trees import Tree
@@ -10,7 +17,6 @@ import seaborn as sb
 from collections import defaultdict
 from cobra.io.sbml import create_cobra_model_from_sbml_file
 from cobra.manipulation.modify import convert_to_irreversible
-from cobra.flux_analysis.parsimonious import optimize_minimal_flux
 
 ppath = "../../proteomics-collection/"
 proteomics = pd.DataFrame.from_csv(ppath+"meta_abundance[copies_fL].csv")
@@ -280,45 +286,6 @@ def get_rand_ECU(ECU,model):
         tmp = ECU[c].dropna()
         rand_ECU[c] = np.random.gamma(tmp.mean(),tmp.std(),len(reactions))
     return rand_ECU
-
-def perform_pFBA(condition):
-
-    cs = gc['media_key'].loc[condition]
-    gr = gc['growth rate [h-1]'].loc[condition]
-    
-    m = create_cobra_model_from_sbml_file('../data/iJO1366.xml')
-    m.reactions.get_by_id('EX_glc_e').lower_bound = 0 
-    convert_to_irreversible(m)            
-    reac = dict([(r.id, r) for r in m.reactions])
-    try:
-        reac['EX_' + cs + '_e'].lower_bound = -1000 # redefine sole carbon source uptake reaction in mmol/gr/h
-    except KeyError:
-        raise 'media key not in model'
-
-    reac['Ec_biomass_iJO1366_core_53p95M'].objective_coefficient = 0            
-    reac['Ec_biomass_iJO1366_WT_53p95M'].objective_coefficient = 1      
-    reac['Ec_biomass_iJO1366_WT_53p95M'].upper_bound = gr            
-    print "solving pFBA for %s" %condition
-    optimize_minimal_flux(m, already_irreversible=True)
-    
-    return pd.Series(m.solution.x_dict)   
-
-#conditions = gc.dropna(subset=['media_key']).index
-#gr = gc['growth rate [h-1]'][conditions]
-#gr.sort()
-#conditions = gr.index
-#
-#mmol_gCDW_h = pd.DataFrame(columns=conditions, index=rxns.keys())
-#for c in conditions:
-#    mmol_gCDW_h[c] = perform_pFBA(c)
-#mmol_gCDW_h.to_csv("../data/flux[mmol_gCDW_h].csv")
-    
-#if __name__ == "__main__":
-#    model_fname = "../data/iJO1366.xml"
-#    model = create_cobra_model_from_sbml_file(model_fname)
-#    convert_to_irreversible(model)
-#    reactions = map(lambda x: x.id, model.reactions)
-#    fluxes = perform_pFBA(model, 'glc', 0.5, 18.5)
 
 '''            
     x = x.dropna()
