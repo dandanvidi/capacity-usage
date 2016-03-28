@@ -36,74 +36,32 @@ E_by_reac = (umol_gCDW_min/SA).loc[SA.index]
 bg = '0.95'
 plt.figure(figsize=(8,8))
 ax = plt.axes(axisbg=bg)
-ECU.dropna(thresh=3, inplace=True)
-for c in conditions:
-    y = ECU[c].copy().dropna()
-    x = E_by_reac[c].copy().loc[y.index]    
-    plt.scatter(x,y,c='cadetblue',edgecolor='')
-    plt.xscale('log')
+x = ECU.copy()
+y = E_by_reac[x.columns].loc[x.index]
+x = x.stack().values
+y = y.stack().values
+
+plt.scatter(y,x,c='cadetblue',edgecolor='')
+plt.xscale('log')
 
 plt.xlabel('enzyme level [$mg \cdot gCDW^{-1}$]', size=15)
 plt.ylabel('enzyme capacity usage', size=15)
 [tick.label.set_fontsize(15) for tick in ax.xaxis.get_major_ticks()]
 [tick.label.set_fontsize(15) for tick in ax.yaxis.get_major_ticks()]
-#
-#plt.axis('square')
-#plt.xlim([1e-5,1e2])
-#plt.ylim([-0.02,1])
-#plt.annotate('R$^2$ = %.02f'%sr[0]**2, (0.2,0.85), xycoords='figure fraction',size=15)
-#plt.tight_layout()
+plt.xlim([1e-5,1e1])
+plt.ylim([-0.02,1.02])
+plt.tight_layout()
 #plt.show()
 
 #%%
-#fig, ax = plt.subplots(1, 1)
-#g = sb.jointplot(x, y, kind="kde", color="m", ax=ax)
-#g.plot_joint(plt.scatter, c="w", s=30, linewidth=1, marker="+")
-#g.ax_joint.collections[0].set_alpha(0)
-#g.set_axis_labels("$X$", "$Y$");
-#ax.set_xscale("log")
-
-#sb.jointplot(np.log10(x), y, kind="kde")
-#plt.close()
-'''
-#E to efficiency#
-bg = '0.95'
-#plt.figure(figsize=(8,8))
-ax = plt.axes(axisbg=bg)
-x = E_by_reac.dropna()
-y = efficiency.dropna(thresh=3)
-x = x.loc[y.index]
-
-x['reactions']=x.index
-x = pd.melt(x, id_vars='reactions')
-x.columns = ['reactions','condition','E']
-
-y['reactions']=y.index
-y = pd.melt(y, id_vars='reactions')
-y.columns = ['reactions','condition','CPU']
-
-xy = pd.merge(x, y, on=['reactions', 'condition'])
-
-gr.index.name = 'condition'
-xy = pd.merge(xy, pd.DataFrame(gr), left_on = ['condition'],right_index=True)
-
-#logx = np.log(x)
-#logy = np.log(y)
-#pr, sr = pearsonr(logx,y), spearmanr(logx,y)
-xy.sort(columns=['growth rate [h-1]'], inplace=True)
-xy.boxplot(column='CPU', by=['growth rate [h-1]'])
-
-sb.jointplot(np.log10(xy["E"]), xy["CPU"], kind="kde")
-
-#plt.xlabel('enzyme level [$mg \cdot gCDW^{-1}$]', size=15)
-#plt.ylabel('enzyme capacity usage', size=15)
-#[tick.label.set_fontsize(15) for tick in ax.xaxis.get_major_ticks()]
-#[tick.label.set_fontsize(15) for tick in ax.yaxis.get_major_ticks()]
-
-#plt.axis('square')
-#ax.set_xlim(0,1)
-#plt.ylim([0,1])
-#plt.annotate('R$^2$ = %.02f'%sr[0]**2, (0.2,0.85), xycoords='figure fraction',size=15)
-#plt.tight_layout()
-#plt.savefig("../res/Figure_S1.svg")
-'''
+for i,r in enumerate(E_by_reac.index):
+    ry =  SA.loc[r]
+    rx = V.loc[r]    
+    R = pearsonr(rx,ry)
+    if R[0]>0.3:
+        plt.figure()
+        plt.scatter(rx/rx.mean(),ry/ry.mean())
+        plt.title(r)
+        
+    
+#%%

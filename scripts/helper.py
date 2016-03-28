@@ -14,10 +14,10 @@ from cobra.flux_analysis.parsimonious import optimize_minimal_flux
 
 ppath = "../../proteomics-collection/"
 proteomics = pd.DataFrame.from_csv(ppath+"meta_abundance[copies_fL].csv")
-pFBA = pd.DataFrame.from_csv("../data/flux[mmol_gCDW_h].csv")
+pFBA = pd.DataFrame.from_csv("../data/flux[mmol_gCDW_h]_projected.csv")
 pFVA = pd.DataFrame.from_csv("../data/flux_variability_[mmol_gCDW_h].csv", header=[0,1]).T
 protein_info = pd.read_csv('../data/protein_abundance_info.csv', sep='\t')
-gc = pd.DataFrame.from_csv("../data/growth_conditions.csv")
+gc = pd.DataFrame.from_csv("../data/carbon_sources.csv")
 #gc = gc[gc.reference=='Schmidt et al. 2015']
 gr = gc['growth rate [h-1]'][gc.index]
 fL_cell = gc['single cell volume [fL]'] /2 # fL (cell volumes are overestimated by a factor of 1.7)
@@ -33,7 +33,7 @@ def map_proteomics(df):
     uni_to_b = {row[48:54]:row[0:5].split(';')[0].strip()
                 for row in open("../data/all_ecoli_genes.txt", 'r')}
     
-    df.replace(to_replace={'upid':uni_to_b}, inplace=True)
+    df.replace(to_replace={'UPID':uni_to_b}, inplace=True)
     manual_replacememnts = {
     'D0EX67':'b1107',
     'D4HZR9':'b2755',
@@ -159,7 +159,10 @@ def flux_carrying_reactions_to_enzymes(V,E,model,use_cache=False):
         #use only flux carrying reactions in a given condition
         vc = V[c]
         vc = vc[vc>0]
+        reactions = map(str,model.reactions)
         for rid in vc.index:
+            if rid not in reactions:
+                continue
             r = model.reactions.get_by_id(rid)
             genes = {g.id:g for g in r.genes}
             # annoing gene in the model - just ignore the reaction it carries
@@ -171,12 +174,12 @@ def flux_carrying_reactions_to_enzymes(V,E,model,use_cache=False):
     with open('../cache/flux_carrying_reactions_to_enzymes.p', 'wb') as fp:
         pickle.dump(mapper, fp)
     return mapper
-
+    
 def specific_activity(V,E,model):    
     mapper = flux_carrying_reactions_to_enzymes(V,E,model)
     V = V.to_dict()
     E = E.to_dict()
-    SA = {}    
+    SA = {}
     for c,reactions in V.iteritems():
         SA[c] = {}
         for r,v in reactions.iteritems():
@@ -312,7 +315,7 @@ def perform_pFBA(condition):
 #for c in conditions:
 #    mmol_gCDW_h[c] = perform_pFBA(c)
 #mmol_gCDW_h.to_csv("../data/flux[mmol_gCDW_h].csv")
-    
+#    
 #if __name__ == "__main__":
 #    model_fname = "../data/iJO1366.xml"
 #    model = create_cobra_model_from_sbml_file(model_fname)

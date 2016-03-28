@@ -8,10 +8,17 @@ from helper import *
 import uncertainties.unumpy as unumpy 
 from scipy.stats import pearsonr
 from scipy.optimize import curve_fit
+from mpl_toolkits.mplot3d import Axes3D
+import seaborn
+from collections import Counter
 
-gc = gc[gc.reference == 'Schmidt et al. 2015']
-gc = gc[gc.strain == 'BW25113']
-conditions = gc.dropna(subset=['media_key']).index & pFBA.columns
+conditions = gc.index
+#gc = gc[gc.reference == 'Schmidt et al. 2015']
+#gc = gc[gc.strain == 'BW25113']
+#gc = gc[gc['growth mode'] == 'batch']
+#x = gc.copy().dropna(subset=['comments']).index
+#gc.drop(x, inplace=True)
+#conditions = gc.dropna(subset=['media_key']).index & pFBA.columns
 gr = gc['growth rate [h-1]'][conditions]
 gr.sort()
 conditions = gr.index
@@ -25,7 +32,45 @@ umol_gCDW_min = mmol_gCDW_h * 1000 / 60
 SA = specific_activity(umol_gCDW_min,mg_gCDW,model)
 E_by_reac = (umol_gCDW_min/SA).loc[SA.index]
 #
-ECU = enzyme_capacity_usage(SA)
+ECU = enzyme_capacity_usage(SA)[conditions]
+SUBSYSTEMS = pd.Series(index=ECU.index, data=[rxns[rx].subsystem for rx in ECU.index])
+
+#%%
+from sklearn.cluster import KMeans
+
+X = ECU.dropna(how='any').values
+
+est = KMeans(n_clusters=11)
+est.fit(X)
+labels = est.labels_
+
+reacs = list(ECU.dropna(how='any').index)
+reacs.sort(key=dict(zip(reacs, labels)).get)
+
+clustered = ECU.loc[reacs].copy()
+conds = [gc['media_key'][c] for c in conditions]
+bg = '0.95'
+plt.figure(figsize=(10,10))
+ax=plt.axes()
+cmap = plt.cm.viridis
+cmap.set_bad(bg,1.)
+seaborn.heatmap(clustered, cmap=cmap,ax=ax,xticklabels=conds,yticklabels=False)
+
+r2group = pd.DataFrame(index=reacs, columns=['group','class','value'])
+r2group['class'] = labels
+r2group['group'] = SUBSYSTEMS.loc[reacs].values
+r2group['value'] = np.ones(len(reacs))
+groups2class = pd.pivot_table(r2group, index='group', values='value', aggfunc='sum', columns='class').replace(np.nan, 0)
+
+plt.show()
+plt.close()
+#for s in set(SUBSYSTEMS):
+    
+    
+from scipy import stats
+#oddsratio, pvalue = stats.fisher_exact(groups2class.values)
+
+#plt.xticks(rotation=90)
 
 #%%
 MC = metabolic_capacity(umol_gCDW_min,mg_gCDW,model)
@@ -48,14 +93,74 @@ ax.set_ylabel('capacity usage of metabolism', size=15)
 [tick.label.set_fontsize(15) for tick in ax.xaxis.get_major_ticks()]
 [tick.label.set_fontsize(15) for tick in ax.yaxis.get_major_ticks()]
 
+AA_biosyn = ['Alanine and Aspartate Metabolism',
+             'Arginine and Proline Metabolism',
+             'Cysteine Metabolism',
+             'Glutamate Metabolism',
+             'Glycine and Serine Metabolism',
+             'Histidine Metabolism',
+             'Methionine Metabolism',
+             'Threonine and Lysine Metabolism',
+             'Tyrosine, Tryptophan, and Phenylalanine Metabolism',
+             'Valine, Leucine, and Isoleucine Metabolism']
+
+central_carbon = ['Citric Acid Cycle',
+                  'Glycolysis/Gluconeogenesis',
+                  'Anaplerotic Reactions',
+                  'Pentose Phosphate Pathway']
+#%%
+import colorsys
+
+def rmsd(x, f):
+    return ((f-x)**2).sum()
+    
+def RgbToHex(rgb):
+	r, g, b = rgb
+	r *= 255
+	g *= 255
+	b *= 255
+	return '#%02x%02x%02x' % (r,g,b)
+ 
+def ColorMap(items, saturation=0.7, value=0.95, hues=None):
+	if hues is None:
+		n = len(items)
+		hues = np.arange(float(n)) / float(n)
+	f = lambda h: RgbToHex(colorsys.hsv_to_rgb(h, saturation, value)) 
+	rgbs = map(f, hues)
+	return dict(zip(items, rgbs))
+ 
+
+
+AAs = [r for r in SUBSYSTEMS.index if SUBSYSTEMS[r] in AA_biosyn]
+CAR = [r for r in SUBSYSTEMS.index if SUBSYSTEMS[r] in central_carbon]
+plt.plot(gr,E_by_reac.loc[AAs].sum())
+
+#%%
+
+BIOSYN_REACS = pd.DataFrame(index=E_by_reac.index,columns=['R2', 'slope'])
+for r in BIOSYN_REACS.index:
+    try:
+        y = E_by_reac.loc[r][conditions]
+        a, cov = curve_fit(lambda a,x:a*x, gr,y)
+        BIOSYN_REACS['R2'][r] = pearsonr(gr,y)[0]**2
+        BIOSYN_REACS['slope'][r] = a[0]
+    except ValueError:
+        continue
+BIOSYN_REACS.dropna(how='any', inplace=True)
+plt.hist(BIOSYN_REACS['R2'], bins=20)
+#plt.figure()
+#y = ECU.loc['CYSS'][conditions]
+#plt.scatter(gr,y)
+#a, cov = curve_fit(lambda a,x:a*x, gr,y)
+#plt.plot([0,1],[0,1*a])
+#l = f(a,gr)
+#print pearsonr(gr,y)[0]**2, a
 
 
 #%%
 CU = ECU*E_by_reac
-SUBSYSTEMS = pd.Series(index=ECU.index, data=[rxns[rx].subsystem for rx in ECU.index])
 CU_sub = (CU[conditions].groupby(by=SUBSYSTEMS).sum() / 
          E_by_reac[conditions].groupby(by=SUBSYSTEMS).sum())
-chemo = [c for c in conditions if gc['growth mode'][c]=='chemostat']
 for s in set(SUBSYSTEMS):
     plt.figure(figsize=(10,10))
     plt.title(s, size=15)
@@ -63,12 +168,10 @@ for s in set(SUBSYSTEMS):
     plt.xlabel('growth rate [h-1]', size=15)
     plt.plot(gr, MCU, 'k*')
     plt.scatter(gr, CU_sub.loc[s])
-    try:
-        plt.scatter(gr[chemo], CU_sub[chemo].loc[s], c='r')
-    except:
-        continue
     plt.xlim(0,1)
     plt.ylim(0,1)
+    
+    
 #E_by_reac['subsystem'] = [rxns[rx].subsystem for rx in E_by_reac.index]
 #E_by_reac = E_by_reac[E_by_reac.subsystem!='']
 #ECU = ECU[ECU.subsystem!='']
@@ -81,6 +184,19 @@ for s in set(SUBSYSTEMS):
 #    plt.plot(gr,CU_by_subsys.loc[s],'r', marker='o')
 
 #%%
+
+
+#E_by_reac['subsystem'] = [rxns[rx].subsystem for rx in E_by_reac.index]
+#E_by_reac = E_by_reac[E_by_reac.subsystem!='']
+#ECU = ECU[ECU.subsystem!='']
+#ECU_by_subsys = ECU.groupby('subsystem').sum()
+#E_by_reac_by_subsys = E_by_reac.groupby('subsystem').sum()
+#CU_by_subsys = CU_by_subsys[conditions]
+#plt.figure()
+#CU_by_subsys = ECU_by_subsys.div(E_by_reac_by_subsys)
+#for s in CU_by_subsys.index:
+#    plt.plot(gr,CU_by_subsys.loc[s],'r', marker='o')
+
 #
 #
 #
