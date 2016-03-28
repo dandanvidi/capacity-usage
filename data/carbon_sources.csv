@@ -1,0 +1,8 @@
+growth condition,strain,media,media_key,growth_mode,growth rate [h-1],growth rate stdev [h-1],cell length [um],cell width [um],single cell volume [fL],reference
+GALACTOSE,BW25113,M9+galactose,gal,batch,0.18,0.01,2,1.1,1.11,Gerosa et al. 2015; Schmidt et al. 2015
+ACETATE,BW25113,M9+acetate,ac,batch,0.29,0.013,2.3,1.2,1.15,Gerosa et al. 2015; Schmidt et al. 2015
+PYRUVATE,BW25113,M9+pyruvate,pyr,batch,0.39,0.01,2.2,1,1.25,Gerosa et al. 2015; Schmidt et al. 2015
+GLYCEROL,BW25113,M9+glycerol,glyc,batch,0.49,0.008,2.3,1.2,1.32,Gerosa et al. 2015; Schmidt et al. 2015
+FRUCTOSE,BW25113,M9+fructose,fru,batch,0.4924,0.01,,,1.48,Gerosa et al. 2015; Schmidt et al. 2015
+SUCCINATE,BW25113,M9+succinate,succ,batch,0.51,0.01,2.4,1.1,1.29,Gerosa et al. 2015; Schmidt et al. 2015
+GLUCOSE,BW25113,M9+glucose,glc,batch,0.65,0.01,3,1.4,1.42,Gerosa et al. 2015; Schmidt et al. 2015

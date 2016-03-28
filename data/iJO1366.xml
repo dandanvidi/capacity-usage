@@ -42627,7 +42627,7 @@
       <reaction id="R_E4PD" name="Erythrose 4-phosphate dehydrogenase">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>GENE_ASSOCIATION: (b2927 or b1779)</p>
+            <p>GENE_ASSOCIATION: b2927</p>
             <p>SUBSYSTEM: Cofactor and Prosthetic Group Biosynthesis</p>
             <p>EC Number: 1.2.1.72</p>
           </body>
