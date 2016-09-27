@@ -83,8 +83,8 @@ class CAPACITY_USAGE(object):
         r_to_isozymes = {}
         for rid, r in self.rxns.iteritems():
             isozymes = r.gene_reaction_rule.split("or")
-            isozymes = [set(re.findall(r"b[0-9]+", iso)) for iso in isozymes]
-            r_to_isozymes[rid] = isozymes
+            isozymes = [';'.join(re.findall(r"[bs0-9]+", iso)) for iso in isozymes]
+            r_to_isozymes[rid] = filter(None, isozymes)
         return r_to_isozymes
         
     def map_reactions_2_enzyme_complexes(self):
