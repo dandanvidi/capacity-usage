@@ -1,0 +1,10 @@
+condition_id,strain,media_key,growth mode,growth rate Gerosa [h-1],growth rate std Gerosa [h-1],growth rate Schmidt [h-1],growth rate std Schmidt [h-1],single cell volume [fL],reference
+galactose,BW25113,gal,batch,0.18,0.01,0.26,0.003,2.21,Gerosa et al. 2015; Schmidt et al. 2015
+acetate,BW25113,ac,batch,0.29,0.013,0.3,0.04,2.3,Gerosa et al. 2015; Schmidt et al. 2015
+pyruvate,BW25113,pyr,batch,0.39,0.01,0.4,0.01,2.5,Gerosa et al. 2015; Schmidt et al. 2015
+succinate,BW25113,succ,batch,0.51,0.01,0.44,0.003,2.58,Gerosa et al. 2015; Schmidt et al. 2015
+glycerol,BW25113,glyc,batch,0.49,0.008,0.47,0.01,2.64,Gerosa et al. 2015; Schmidt et al. 2015
+fructose,BW25113,fru,batch,0.4924,0.01,0.65,0.004,2.96,Gerosa et al. 2015; Schmidt et al. 2015
+glucose,BW25113,glc,batch,0.65,0.01,0.58,0.01,2.84,Gerosa et al. 2015; Schmidt et al. 2015
+glycerol+aa,BW25113,,batch,1.27,,1.27,0.01,3.83,Schmidt et al. 2015
+lb,BW25113,,batch,1.9,,1.9,0.03,4.29,Schmidt et al. 2015

@@ -1,0 +1,57 @@
+gene,Functional group,lower in,Quantitatione1,Quantitatione2,comments
+AceB (aceB),"Metabolism, central intermediary metabolism",Anc,4.959 ± 0.186,6.017 ± 0.285,
+ArgT (argT),"Metabolism, amino-acid biosynthesis",Anc,2.204 ± 0.322,1.054 ± 0.037,only true for Ara+1 evolved clone
+FadL (fadL)*,"Transport, outer membrane",Anc,1.956 ± 0.080,2.800 ± 0.195,
+HtpG (htpG),"Metabolism, amino-acid biosynthesis",Anc,0,0,
+LeuA (leuA)*,"Metabolism, amino-acid biosynthesis",Anc,0,0,
+LeuA (leuA)*,"Metabolism, amino-acid biosynthesis",Anc,0,0,
+NfnB (nfnB),"Metabolism, central intermediary metabolism",Anc,0,0,
+ZnuA (znuA),"Transport, periplasmic space",Anc,0,0,
+Aat (aat),"Information transfer, protein degradation",Evol,0.555 ± 0.038,0.564 ± 0.026,
+AhpC (ahpC),"Cell processes, protection",Evol,1.060 ± 0.065,0.991 ± 0.034,
+AroG (aroG),"Metabolism, amino-acid biosynthesis",Evol,0.127 ± 0.008,0.203 ± 0.014,
+ArtJ (artJ),"Transport, periplasmic space",Evol,0.504 ± 0.038,0.536 ± 0.037,
+AsnS (asnS)**,"Information transfer, translation",Evol,0.556 ± 0.043,0.653 ± 0.019,
+AsnS (asnS)**,"Information transfer, translation",Evol,0.505 ± 0.032,0.379 ± 0.029,
+ATPF (atpF),"Metabolism, energy metabolism",Evol,0.461 ± 0.002,0.524 ± 0.025,
+ATPF (atpF),"Metabolism, energy metabolism",Evol,0.409 ± 0.064,0.492 ± 0.014,
+BipA (bipA),"GTP-binding protein, elongation factor",Evol,0.543 ± 0.029,0.442 ± 0.031,
+BipA (bipA),"GTP-binding protein, elongation factor",Evol,0.542 ± 0.044,0.583 ± 0.040,
+CirA (cirA)*,"Transport, outer membrane",Evol,0.656 ± 0.011,0.678 ± 0.052,
+FabI (fabI),"Metabolism, fatty acid biosynthesis",Evol,0.497 ± 0.012,0.424 ± 0.026,
+FklB (fklB),"Information transfer, chaperone, folding",Evol,0.374 ± 0.017,0.333 ± 0.012,
+Fur (fur)*,"Information transfer, transcription",Evol,0,0,
+GapA (gapA),"Metabolism, energy metabolism",Evol,0.999 ± 0.011,0.993 ± 0.079,
+GlnH (glnH),"Transport, periplasmic space",Evol,0,0,
+GlpK (glpK)*,"Metabolism, carbon compound utilization",Evol,1.066 ± 0.137,0.256 ± 0.027,only true for Ara-1 evolved clone
+GlyS (glyS),"Information transfer, translation",Evol,0.216 ± 0.039,0.238 ± 0.024,
+GlyS (glyS),"Information transfer, translation",Evol,0.200 ± 0.019,0.157 ± 0.021,
+GpmA (gpmA),"Metabolism, central intermediary metabolism",Evol,0.403 ± 0.071,0.344 ± 0.013,
+GroEL (groL)**,"Information transfer, chaperone, folding",Evol,0.300 ± 0.037,0.399 ± 0.040,
+GuaA (guaA)*,"Metabolism, nucleotide biosynthesis",Evol,0.996 ± 0.096,0.274 ± 0.015,only true for Ara-1 evolved clone
+HslU (hslU),"Information transfer, protein degradation",Evol,0.468 ± 0.063,0.414 ± 0.020,
+ZnuA (znuA),"Information transfer, chaperone, folding",Evol,0.447 ± 0.026,0.454 ± 0.044,
+LamB (lamB)*,"Transport, outer membrane",Evol,0,0,
+MalE (malE)*,"Transport, periplasmic space",Evol,0,0,
+Mdh (mdh)*,"Metabolism, energy metabolism",Evol,0.532 ± 0.047,0.545 ± 0.024,
+MetE (metE),"Metabolism, amino-acid biosynthesis",Evol,0.544 ± 0.048,0.983 ± 0.055,only true for Ara+1 evolved clone
+MetE (metE),"Metabolism, amino-acid biosynthesis",Evol,0.409 ± 0.040,0.950 ± 0.039,only true for Ara+1 evolved clone
+MetQ (metQ),"Transport, periplasmic space",Evol,0,0,
+MglB (mglB)*,"Transport, periplasmic space",Evol,0.736 ± 0.007,0.554 ± 0.007,
+MglB (mglB)*,"Transport, periplasmic space",Evol,0.599 ± 0.036,0.451 ± 0.010,
+MinD (minD),"Cell processes, cell division",Evol,0.218 ± 0.029,0.292 ± 0.017,
+MinD (minD),"Cell processes, cell division",Evol,0.272 ± 0.028,0.255 ± 0.019,
+ModA (modA)*,"Transport, periplasmic space",Evol,0.433 ± 0.008,0.408 ± 0.034,
+OppA (oppA),"Transport, periplasmic space",Evol,0.315 ± 0.006,0.975 ± 0.090,only true for Ara+1 evolved clone
+PflB (pflB)*,"Metabolism, energy metabolism",Evol,0,0,
+PurH (purH),"Metabolism, nucleotide biosynthesis",Evol,0.615 ± 0.060,0.964 ± 0.120,only true for Ara+1 evolved clone
+PykF (pykF),"Metabolism, energy metabolism",Evol,1.112 ± 0.041,0,only true for Ara-1 evolved clone
+RbsB (rbsB)*,"Transport, periplasmic space",Evol,0,0,
+SerC (serC)*,"Metabolism, amino-acid biosynthesis",Evol,0.320 ± 0.008,0.380 ± 0.012,
+SodB (sodB)*,"Cell processes, adaptation to stress",Evol,0.370 ± 0.030,1.000 ± 0.039,only true for Ara+1 evolved clone
+SucC (sucC)*,"Metabolism, energy metabolism",Evol,0.631 ± 0.005,0.742 ± 0.022,
+SucD (sucD)*,"Metabolism, energy metabolism",Evol,0.463 ± 0.014,0.484 ± 0.029,
+TktA (tktA),"Metabolism, central intermediary metabolism",Evol,0.559 ± 0.049,0.996 ± 0.045,only true for Ara+1 evolved clone
+TolB (tolB),"Transport, periplasmic space",Evol,0.165 ± 0.020,0.139 ± 0.031,
+TolB (tolB),"Transport, periplasmic space",Evol,0.206 ± 0.008,0.258 ± 0.044,
+YcdO (ycdO),"Hypothetical, unknown",Evol,0.559 ± 0.068,0.633 ± 0.027,
