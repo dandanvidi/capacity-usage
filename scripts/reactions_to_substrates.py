@@ -38,4 +38,4 @@ df.loc[:, "gene_name"] = [gene_info.loc[b, 'gene'] if b in gene_info.index
 df.loc[:, "gene_MW[Da]"] = [gene_info.loc[b, 'molecular_weight[Da]'] if b in gene_info.index
                           else None for b in df['gene_ID']]
                           
-df.to_csv('..data/df_for_elad.csv', sep='\t')
+df.to_csv('../data/df_for_elad.csv', sep='\t')
