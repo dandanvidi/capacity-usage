@@ -35,7 +35,7 @@ cmplxs = r2isozymes[r2isozymes.enzyme.str.contains(';')].enzyme.drop_duplicates(
 for cmplx in cmplxs:
     try: 
         gs = cmplx.split(';')
-        copies_fL.loc[cmplx, :] = copies_fL.loc[gs].min()
+        copies_fL.loc[cmplx, :] = copies_fL.loc[gs].min(skipna=False)
     except KeyError:
         continue
 copies_fL.replace(np.nan, 0, inplace=True)
