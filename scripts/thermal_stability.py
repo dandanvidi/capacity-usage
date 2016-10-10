@@ -3,10 +3,14 @@ from capacity_usage import CAPACITY_USAGE
 import matplotlib.pyplot as plt
 from scipy.stats import pearsonr, spearmanr
 import seaborn as sns
+from cobra.manipulation.modify import revert_to_reversible
+from itertools import product
 
-#flux = pd.DataFrame.from_csv("../data/mmol_gCDW_h.csv")
-abundance =  pd.DataFrame.from_csv("../data/g_gCDW.csv")
-#cu = CAPACITY_USAGE(flux, abundance)
+flux = pd.DataFrame.from_csv("../data/mmol_gCDW_h.csv")
+copies_fL = pd.read_csv("../data/abundance[copies_fl].csv")
+copies_fL = copies_fL[['bnumber', 'GLC_BATCH_mu=0.58_S']]
+abundance = pd.DataFrame.from_csv("../data/g_gCDW.csv")
+cu = CAPACITY_USAGE(flux, abundance)
 
 
 uni_to_b = {row[48:54]:row[0:5].split(';')[0].strip()
@@ -17,34 +21,31 @@ id_mapper.columns = ["uniprot", "bnumber"]
 TS = pd.read_csv("../data/thermoal_stability_ecoli.csv")
 df = TS.merge(id_mapper, on=["uniprot"])
 #%%
-#cu.mg_gCDW.index.name = "bnumber"
-#df.set_index("bnumber")
+model = cu.model.copy()
+revert_to_reversible(model)
+def one2one_mapping():
+    l = []
+    for b in cu.model.genes:
+        l+=(list(product([b.id], list(b.reactions))))
+    df = pd.DataFrame(l)
+    df.columns = ['bnumber', 'reaction']
+    df.loc[:, '# genes in reaction'] = [len(r.genes) for r in df['reaction']]
+    return df
 
-def despine(ax, fontsize=15):
-    ax.tick_params(right=0, top=0, direction='out', labelsize=fontsize)
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.set_xlabel(ax.get_xlabel(), size=15)
-    ax.set_ylabel(ax.get_ylabel(), size=15)
-    ax.xaxis.tick_bottom()
-    ax.yaxis.tick_left()
-    
-df = df.merge(abundance, left_on="bnumber", right_index=True)
-fig = plt.figure(figsize=(6,6))
-ax = plt.axes()
+b2r = one2one_mapping()
+df = df.merge(b2r, on="bnumber", how='outer')
+df = df.merge(copies_fL, on="bnumber", how='outer')
+df['reaction'] = df['reaction'].map(str, )
+kmax = cu.kmax
+kmax.name='kmax'
+kcat = cu.load_kcats_umolmgmin()
+kcat.name='kcat'
+specific_activity = cu.SA.join(kmax)
+specific_activity = specific_activity.join(kcat)
+specific_activity = specific_activity[['glucose', 'kmax', 'kcat']].dropna(how='all')
+specific_activity.columns = ['kapp_glucose', 'kmax', 'kcat']
+specific_activity.loc[:, 'kcat/kmax'] = specific_activity['kcat'] / specific_activity['kmax']
+df = df.merge(specific_activity, left_on='reaction', right_index=True, how='outer')
 
-x = df['glucose']
-y = df['Protein Abundance']
-ax.scatter(x,y, edgecolor='', c='#8080ff')
-ax.set_xlim(1e-9, 1e-2)
+df.to_csv("../cache/thermal_stability_metadata.csv")
 
-ax.set_xscale('log')
-ax.set_yscale('log')
-
-ax.annotate(r'$r^2=%.2f$'%spearmanr(x,y)[0]**2, (0.1,0.9), 
-            xycoords='axes fraction', size=15)
-
-ax.set_xlabel('Schmidt et al. [g/gCDW]', size=15)
-ax.set_ylabel('Leuenberger et al. [copies/cell?]', size=15)
-ax.tick_params(direction='out', labelsize=15)
-plt.tight_layout()

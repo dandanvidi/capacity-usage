@@ -172,6 +172,9 @@ class CAPACITY_USAGE(object):
     def load_kcats(self):
         return pd.DataFrame.from_csv("../data/kcat_data.csv")['kcat per AS [s-1]']
 
+    def load_kcats_umolmgmin(self):
+        return pd.DataFrame.from_csv("../data/kcat_data.csv")['Vmax [umol min-1 mg-1]']
+        
     def kmax_per_sec(self):
         weights = pd.DataFrame.from_csv("../data/kcat_data.csv")['MW per AS [kDa]']
         return self.kmax*weights/60
